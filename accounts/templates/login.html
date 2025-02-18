@@ -1,0 +1,109 @@
+{% extends 'base.html'%}´
+{% load static %}
+
+{% block title %}Login/Sigin{% endblock %}
+
+{% block content %}
+
+    {%block extra_css %} 
+        <link rel="stylesheet" href="{% static 'users/css/login.css' %}"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    {% endblock %}
+    <body>
+        <div class="container">
+        <div class="content first-content">
+            <div class="first-column">
+                <h2 class="title title-primary">Welcome Back!</h2>
+                <p class="descriptions description-primary">To keep conect with us</p>
+                <p class="descriptions description-primary">Please login with your personal info</p>
+                <button id="signin" class="btn btn-primary">Sign in</button>
+            </div><!-- Primeira Coluna -->
+            <div class="second-column">
+                <h2 class="title title-second">Create account</h2>
+                <div class="social-media">
+                    <ul class="media">
+                        <a class="link-social-media" href="#">
+                            <li class="item-social-media">
+                                <i class="fa-brands fa-facebook"></i>
+                            </li>
+                        </a>
+                        <a class="link-social-media" href="#">
+                            <li class="item-social-media">
+                                <i class="fa-brands fa-google"></i>
+                            </li>
+                        </a>
+                        <a class="link-social-media" href="#">
+                            <li class="item-social-media">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </li>
+                        </a>
+                    </ul>
+                </div>    
+                    <p class="descriptions descriptions-second">Or use your Email for registration</p>
+                    <form class="form" method="POST">
+                        {% csrf_token %}
+                        <label class='labe-input' for="">
+                            <i class="fa-solid fa-user icon-modify"></i>
+                            <input type="text" name="name" placeholder="Name" required>
+                        </label>
+                        <label class='labe-input' for="">
+                            <i class="fa-solid fa-envelope icon-modify"></i>
+                            <input type="email" name="email" placeholder="Email" required>
+                        </label>                        
+                        <label class='labe-input' for="">
+                            <i class="fa-solid fa-lock icon-modify"></i>
+                            <input type="password" name="password" placeholder="Password" required>
+                        </label>
+                        <button class="btn btn-second">Sign up</button>
+                    </form>
+            </div><!-- Segunda Coluna -->
+        </div>
+        <div class="content second-content">
+            <div class="first-column">
+                <h2 class="title title-primary">Hello, Friend!</h2>
+                <p class="descriptions description-primary">Entry your personal details</p>
+                <p class="descriptions description-primary">and start your journey now!</p>
+                <button id="signup" class="btn btn-primary">Sign up</button>
+            </div><!-- Primeira Coluna -->
+            <div class="second-column">
+                <h2 class="title title-second">Sign In To Developer</h2>
+                <div class="social-media">
+                    <ul class="media">
+                        <a class="link-social-media" href="#">
+                            <li class="item-social-media">
+                                <i class="fa-brands fa-facebook"></i>
+                            </li>
+                        </a>
+                        <a class="link-social-media" href="#">
+                            <li class="item-social-media">
+                                <i class="fa-brands fa-google"></i>
+                            </li>
+                        </a>
+                        <a class="link-social-media" href="#">
+                            <li class="item-social-media">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </li>
+                        </a>
+                    </ul>
+                </div>    
+                    <p class="descriptions descriptions-second">Or use your Email</p>
+                    <form class="form" method="POST">
+                        {% csrf_token %}
+                        <label class='labe-input' for="">
+                            <i class="fa-solid fa-envelope icon-modify"></i>
+                            <input type="email" name="email" placeholder="Email" required>
+                        </label>                        
+                        <label class='labe-input' for="">
+                            <i class="fa-solid fa-lock icon-modify"></i>
+                            <input type="password" name="password" placeholder="Password" required>
+                        </label>
+                        <a class="password" href="#">Forgout your password?</a>
+                        <button class="btn btn-second">Sign in</button>           
+                    </form>
+            </div><!-- Segunda Coluna -->
+        </div>
+    </div>
+    </body>
+
+    {% block extra_js %}<script src="{% static 'users/js/login.js' %}"></script>{% endblock %}
+{% endblock %}
