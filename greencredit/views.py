@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from .models import Produto
-from .forms import ProdutoForm
+from .models import Produto, Credito
+from .forms import ProdutoForm, CreditoForm
 
 def home(request):
     return render(request, 'home.html')
@@ -34,3 +34,10 @@ class ProdutoDeleteView(DeleteView):
     model = Produto
     success_url = '/produtos/'
     template_name = 'produto_confirm_delete.html'
+ 
+class CreditoListView(ListView):
+    model = Credito
+    template_name = 'credito_list.html'
+
+    def get_queryset(self):
+        return Credito.objects.filter(cliente__usuario=self.request.user)

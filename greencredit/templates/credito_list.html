@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Meus Créditos - Crédito Verde{% endblock %}
+
+{% block content %}
+<div class="credit-management">
+    <h2>Meus Pedidos de Créditos</h2>
+    <a href="{% url 'credito_create' %}" class="btn"><i class="fas fa-plus"></i> Novo Pedido</a>
+    <div class="credit-list">
+        {% for credito in creditos %}
+            <div class="credit-card">
+                <div class="credit-header">
+                    <h3>Pedidos #{{ credito.id }}</h3>
+                    <span class="status {{ credito.status|lower }}">{{ credito.get_status_display }}</span>
+                </div>
+                <div class="credit-details">
+                    <p>Solicitado: {{credito.valor_solicitado}} KZ </p>
+                    <p>Aprovado: {{credito.valor_aprovado|default:'-'}} KZ</p>
+                    <a href="{% url 'credito_detail' credito.id%}" class="btn-details"><i class="fas fa-eye"></i>Detalhes</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
