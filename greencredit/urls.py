@@ -14,4 +14,8 @@ urlpatterns = [
     path('creditos/', views.CreditoListView.as_view(), name='credito_list'),
     path('creditos/novo/', views.CreditoCreateView.as_view(), name='credito_create'),
     path('creditos/<int:pk>', views.CreditoDetailView.as_view(), name='credito_detail'),
+    # Compras
+    path('compras/', views.CompraListView.as_view(), name='compra_list'),
+    path('compras/nova/', views.CompraCreateView.as_view(), name='compra_create'),
+    path('compras/<int:pk>/', views.CompraDetailView.as_view(), name='compra_detail')
 ]

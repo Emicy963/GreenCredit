@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nova Compra - Crédito Verde{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/compra_form.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="purchase-form">
+    <h2>Nova Compra</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.credito.label_tag }}
+            {{ form.credito }}
+        </div>
+
+        <h3>Itens da Compra</h3>
+        <div class="items-container">
+            {{ item_formset.management_form }}
+            {{% for form in item_formset %}}
+                <div class="item-form">
+                    {{ form.produto.label_tag }}
+                    {{ form.produto }}
+                    {{ form.quantidade.label_tag }}
+                    {{ form.quantidade }}
+                </div>
+            {{% endfor %}}
+        </div>
+        <button type="button" id="add-item" class="btn"><i class="fas fa-plus"></i> Adicionar Item</button>
+
+        <button type="submit" class="btn"><i class="fas fa-shopping-cart"></i> Finalizar Compra</button>
+    </form>
+</div>
+{% endblock %}

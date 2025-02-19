@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Minhas Compras - GreenCredit{% endblock %}
+
+{% block content %}
+<div class="purchase-history">
+    <h2>Histórico de Compras</h2>
+    
+    <div class="purchase-list">
+        {% for compra in compras %}
+        <div class="purchase-card">
+            <div class="purchase-header">
+                <h3>Compra #{{ compra.id }}</h3>
+                <span class="date">{{ compra.data_compra|date:"d/m/Y H:i" }}</span>
+            </div>
+            <div class="purchase-details">
+                <p>Total: {{ compra.valor_total }} MT</p>
+                <a href="{% url 'compra_detail' compra.id %}" class="btn-details"><i class="fas fa-receipt"></i> Detalhes</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

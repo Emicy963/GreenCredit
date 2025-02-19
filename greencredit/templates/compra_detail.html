@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalhes da Compra - GreenCredit{% endblock %}
+
+{% block content %}
+<div class="purchase-detail">
+    <h2>Compra #{{ compra.id }}</h2>
+    
+    <div class="purchase-info">
+        <p><strong>Data:</strong> {{ compra.data_compra|date:"d/m/Y H:i" }}</p>
+        <p><strong>Valor Total:</strong> {{ compra.valor_total }} MT</p>
+        <p><strong>Crédito Utilizado:</strong> {{ compra.credito.valor_aprovado }} MT</p>
+    </div>
+
+    <h3>Itens Comprados</h3>
+    <table class="items-list">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in compra.itens.all %}
+            <tr>
+                <td>{{ item.produto.nome }}</td>
+                <td>{{ item.quantidade }} {{ item.produto.unidade_medida }}</td>
+                <td>{{ item.preco_unitario }} MT</td>
+                <td>{{ item.subtotal }} MT</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

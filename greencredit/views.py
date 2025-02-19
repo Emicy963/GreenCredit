@@ -12,6 +12,14 @@ def about(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def aprovar_credito(request, pk):
+    credito = get_object_or_404(Credito, pk=pk)
+    if request.method == 'POST':
+        credito.status = 'APROVADO' if 'aprovar' in request.POST else 'REJEITADO'
+        credito.save()
+        return redirect('credito_detail.html', pk)
+    return render(request, 'credito_approval.html', {'credito': credito})
+
 class ProdutoListView(ListView):
     model = Produto
     template_name = 'produto_list.html'
@@ -55,10 +63,37 @@ class CreditoDetailView(DetailView):
     model = Credito
     template_name = 'credito_detail.html'
 
-def aprovar_credito(request, pk):
-    credito = get_object_or_404(Credito, pk=pk)
-    if request.method == 'POST':
-        credito.status = 'APROVADO' if 'aprovar' in request.POST else 'REJEITADO'
-        credito.save()
-        return redirect('credito_detail.html', pk)
-    return render(request, 'credito_approval.html', {'credito': credito})
+class CompraCreateView(CreateView):
+    model = Compra
+    form_class = CompraForm
+    template_name = 'compra_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['item_formset'] = ItemCompraFormSet(self.request.POST)
+        else:
+            context['item_formset'] = ItemCompraFormSet()
+        
+        return context
+    
+    def form_valid(self, form):
+        context = self.get_context_data()
+        form.instance.cliente = self.request.user.cliente
+        self.object = form.save()
+        item_formset = context['item_formset']
+        if item_formset.is_valid():
+            item_formset.instance = self.object
+            item_formset.save()
+        return super().form_valid(form)
+
+class CompraListView(ListView):
+    model = Compra
+    template_name = 'compra_list.html'
+
+    def get_queryset(self):
+        return Compra.objects.filter(cliente__usuario=self.request.user)
+    
+class CompraDetailView(DetailView):
+    model = Compra
+    template_name = 'compra_detail.html'
