@@ -1,8 +1,44 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home Page{% endblock %}
+{% block title %}Bem-vindo ao Crédito Verde{% endblock %}
 
-{% block content%}
-    <h1>Hello Word!</h1>
-    <p>Welcome to My Web Site</p>
+{% block content %}
+    {% block extra_css %}
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    {% endblock %}
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Bem-vindo ao Crédito Verde</h1>
+        <p class="hero-description">
+            Conectamos você a alimentos saudáveis e acessíveis, com crédito facilitado para uma vida melhor.
+        </p>
+        <div class="hero-actions">
+            <a href="{% url 'produto_list' %}" class="btn btn-primary">
+                <i class="fas fa-shopping-basket"></i> Ver Produtos
+            </a>
+            <a href="{% url 'credito_list' %}" class="btn btn-secondary">
+                <i class="fas fa-credit-card"></i> Solicitar Crédito
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="feature-card">
+        <i class="fas fa-leaf feature-icon"></i>
+        <h3>Alimentos Saudáveis</h3>
+        <p>Oferecemos uma variedade de produtos frescos e orgânicos.</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-hand-holding-usd feature-icon"></i>
+        <h3>Crédito Facilitado</h3>
+        <p>Crédito acessível para você comprar o que precisa.</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-truck feature-icon"></i>
+        <h3>Entrega Rápida</h3>
+        <p>Receba seus produtos no conforto da sua casa.</p>
+    </div>
+</section>
 {% endblock %}

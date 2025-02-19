@@ -1,8 +1,37 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}About us{% endblock %}
+{% block title %}Sobre Nós - Crédito Verde{% endblock %}
 
 {% block content %}
-<h1>About Us</h1>
-<p>We are the solutions for your life!</p>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+<section class="about-section">
+    <div class="about-content">
+        <h1>Sobre Nós</h1>
+        <p class="about-description">
+            No Crédito Verde, acreditamos que uma alimentação saudável deve ser acessível a todos. Nossa missão é conectar
+            você a produtos frescos e orgânicos, oferecendo crédito facilitado para que você possa cuidar da sua saúde e
+            bem-estar.
+        </p>
+        <div class="about-values">
+            <div class="value-card">
+                <i class="fas fa-heart value-icon"></i>
+                <h3>Missão</h3>
+                <p>Promover acesso a alimentos saudáveis para todos.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-eye value-icon"></i>
+                <h3>Visão</h3>
+                <p>Ser referência em crédito para alimentação saudável.</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-handshake value-icon"></i>
+                <h3>Valores</h3>
+                <p>Transparência, acessibilidade e sustentabilidade.</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
