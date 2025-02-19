@@ -41,3 +41,12 @@ class CreditoListView(ListView):
 
     def get_queryset(self):
         return Credito.objects.filter(cliente__usuario=self.request.user)
+    
+class CreditoCreateView(CreateView):
+    model = Credito
+    form_class = ProdutoForm
+    template_name = 'credito_form.html'
+
+    def form_valid(self, form):
+        form.instance.cliente = self.request.user.cliente
+        return super().form_valid(form)

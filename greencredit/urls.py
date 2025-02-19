@@ -12,4 +12,5 @@ urlpatterns = [
     path('produtos/excluir/<int:pk>/', views.ProdutoDeleteView.as_view(), name='produto_delete'),
     # Créditos
     path('creditos/', views.CreditoListView.as_view(), name='credito_list'),
+    path('creditos/nvo/', views.CreditoCreateView.as_view(), name='credito_create'),
 ]

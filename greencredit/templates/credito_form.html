@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Solicitar Crédito - Crédito Verde{% endblock %}
+
+{% block content %}
+<div class="credit-form">
+    <h2>Solicitar Novo Crédito</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Enviar Solicitação</button>
+    </form>
+</div>
+{% endblock %}
