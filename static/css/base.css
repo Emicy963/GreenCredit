@@ -289,3 +289,48 @@ input, select, textarea {
 
 }
 
+/* Confirmação de Exclusão */
+.delete-confirmation {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.delete-confirmation h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.delete-confirmation p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-cancel {
+    background-color: var(--secondary-color);
+    border: none;
+}
+
+.btn-cancel:hover {
+    background-color: #2c3e50;
+}

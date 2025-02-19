@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirmar Exclusão - GreenCredit{% endblock %}
+
+{% block content %}
+<div class="delete-confirmation">
+    <h2>Confirmar Exclusão</h2>
+    <p>Tem certeza que deseja excluir o produto <strong>"{{ object.nome }}"</strong>?</p>
+    <p>Esta ação não pode ser desfeita.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash"></i> Sim, Excluir
+            </button>
+            <a href="{% url 'greencredit:produto_list' %}" class="btn btn-cancel">
+                <i class="fas fa-times"></i> Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
