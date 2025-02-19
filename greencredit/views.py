@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from .models import Produto, Credito
-from .forms import ProdutoForm, CreditoForm
+from .models import Produto, Credito, Compra
+from .forms import ProdutoForm, CreditoForm, CompraForm, ItemCompraForm, ItemCompraFormSet
 
 def home(request):
     return render(request, 'home.html')
@@ -44,9 +44,21 @@ class CreditoListView(ListView):
     
 class CreditoCreateView(CreateView):
     model = Credito
-    form_class = ProdutoForm
+    form_class = CreditoForm
     template_name = 'credito_form.html'
 
     def form_valid(self, form):
         form.instance.cliente = self.request.user.cliente
         return super().form_valid(form)
+
+class CreditoDetailView(DetailView):
+    model = Credito
+    template_name = 'credito_detail.html'
+
+def aprovar_credito(request, pk):
+    credito = get_object_or_404(Credito, pk=pk)
+    if request.method == 'POST':
+        credito.status = 'APROVADO' if 'aprovar' in request.POST else 'REJEITADO'
+        credito.save()
+        return redirect('credito_detail.html', pk)
+    return render(request, 'credito_approval.html', {'credito': credito})

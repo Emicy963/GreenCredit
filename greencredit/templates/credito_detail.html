@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalhes de Crédito - Crédito Verde {% endblock %}
+
+{% block content %}
+<div class="credit-detail">
+    <h2>Detalhes de Crédito #{{ credito.id }}</h2>
+
+    <div class="credit-info">
+        <p><strong>Status:</strong> {{credito.get_status_display}} </p>
+        <p><strong>Valor Solicitado:</strong> {{credito.valor_solicitado}} KZ</p>
+        <p><strong>Valor Aprovado:</strong> {{credito.valor_aprovado|default:'-'}} KZ</p>
+        <p><strong>Data Solicitações:</strong> {{credito.data_solicitada|date:'d/m/Y H:i'}} KZ</p>
+    </div>
+
+    {% if user.is_stall and credito.status == 'PENDENTE' %}
+    <div class="credit-approval">
+        <h3>Aprovar/Rejeitar Crédito</h3>
+        <form method="post">
+            {{% csrf_token %}}
+            {{ aprovar_form.as_p }}
+            <button type="submit" class="btn"><i class="fas fa-check"></i> Atualizar Status</button>
+        </form>  
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

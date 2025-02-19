@@ -2,11 +2,11 @@ from django.db import models
 from django.db import models
 from django.core.validators import MinValueValidator
 from decimal import Decimal
-from setup.settings import AUTH_USER_MODEL
+from django.conf import settings
 
 class Cliente(models.Model):
-    usuario = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    cpf = models.CharField(max_length=14, unique=True)
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    bi = models.CharField(max_length=14, unique=True)
     telefone = models.CharField(max_length=15)
     endereco = models.TextField()
     score_credito = models.IntegerField(default=0)
