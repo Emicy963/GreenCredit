@@ -23,3 +23,14 @@ class ProdutoCreateView(CreateView):
     form_class = ProdutoForm
     template_name = 'produto_form.html'
     success_url = '/produtos/'
+
+class ProdutoUpdateView(UpdateView):
+    model = Produto
+    form_class = ProdutoForm
+    template_name = 'produto_form.html'
+    success_url = '/produtos/'
+
+class ProdutoDeleteView(DeleteView):
+    model = Produto
+    success_url = '/produtos/'
+    template_name = 'produto_confirm_delete.html'

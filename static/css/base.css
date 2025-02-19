@@ -165,6 +165,78 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+/* Product Management */
+.product-management {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.btn-edit {
+    background-color: var(--accent-color);
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+}
+
+/* Credit Cards */
+.credit-card {
+    background: white;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.status.aprovado { background: #2ecc71; color: white; }
+.status.pendente { background: #f1c40f; color: black; }
+.status.rejeitado { background: #e74c3c; color: white; }
+
+/* Forms */
+.form-group {
+    margin: 1rem 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
 /* Mobile Menu */
 .mobile-menu {
     display: none;
@@ -216,3 +288,4 @@ body {
     }
 
 }
+
