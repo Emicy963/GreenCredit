@@ -1,12 +1,11 @@
 from django.db import models
-
 from django.db import models
-from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from decimal import Decimal
+from setup.settings import AUTH_USER_MODEL
 
 class Cliente(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    usuario = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)
     cpf = models.CharField(max_length=14, unique=True)
     telefone = models.CharField(max_length=15)
     endereco = models.TextField()
@@ -47,7 +46,7 @@ class Credito(models.Model):
         ('QUITADO', 'Quitado'),
     ]
     
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="creditos")
     valor_solicitado = models.DecimalField(max_digits=10, decimal_places=2)
     valor_aprovado = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDENTE')
