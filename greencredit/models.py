@@ -2,10 +2,10 @@ from django.db import models
 from django.db import models
 from django.core.validators import MinValueValidator
 from decimal import Decimal
-from django.conf import settings
+from django.contrib.auth.models import User
 
 class Cliente(models.Model):
-    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     bi = models.CharField(max_length=14, unique=True)
     telefone = models.CharField(max_length=15)
     endereco = models.TextField()

@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
-from .models import CustomUser
-from django.contrib import messages
+from django.contrib.auth.models import User  # Importe o User padrão
 from django.contrib.auth import login, authenticate, logout
-
+from django.shortcuts import render, redirect
+from django.contrib import messages
 
 def auth_view(request):
     if request.method == 'POST':
@@ -18,16 +17,16 @@ def handle_register(request):
     email = request.POST.get('email')
     password = request.POST.get('password')
 
-    if CustomUser.objects.filter(username=name).exists():
+    if User.objects.filter(username=name).exists():
         messages.error(request, 'Este nome de usuário já existe!')
         return redirect('auth')
     
-    if CustomUser.objects.filter(email=email).exists():
+    if User.objects.filter(email=email).exists():
         messages.error(request, 'Este email de usuário já existe!')
         return redirect('auth')
 
     try:
-        user = CustomUser.objects.create_user(
+        user = User.objects.create_user(
             username=name,
             email=email,
             password=password
@@ -41,7 +40,7 @@ def handle_register(request):
         else:
             messages.error(request, 'Erro na autenticação do novo usuário!')
     except Exception as e:
-        messages.error(request, f'Erro ao cria o Usuário: {e}.')
+        messages.error(request, f'Erro ao criar o Usuário: {e}.')
         return redirect('auth')
     
 def handle_login(request):
@@ -49,9 +48,9 @@ def handle_login(request):
     password = request.POST.get('password')
 
     try:
-        user = CustomUser.objects.get(email=email)
+        user = User.objects.get(email=email)
         username = user.username
-    except CustomUser.DoesNotExist:
+    except User.DoesNotExist:
         messages.error(request, 'Email ou senha inválido.')
         return redirect('auth')
     
