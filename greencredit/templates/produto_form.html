@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Produto - Crédito Verde {% endblock %}
+
+{% block content %}
+<div class="product-form">
+    <h2>Produto</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn"><i class="fas fa-save"></i>Salvar</button>
+    </form>
+</div>
+{% endblock %}
